@@ -58,7 +58,7 @@ class _ACS_AlbumOneState extends State<ACS_AlbumOne> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (_) => ACS_OnePhotoForOneAlbum(
+                        builder: (_) => ACS_PhotoForOneAlbum(
                           photos: onephotoalbums[index],
                         ),
                       ),

@@ -1,7 +1,10 @@
+import 'dart:io';
+
 import 'package:acs/acs_Data/acs_IslamicEbooks_info.dart';
 import 'package:acs/acs_Data/acs_Programs_info.dart';
 import 'package:acs/acs_Ebook/acs_OneBook_page.dart';
 import 'package:acs/acs_Widgets/acs_constants.dart';
+import 'package:acs/api/acs_pdf_api.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -49,20 +52,26 @@ class _ACS_AllHadisSarifState extends State<ACS_AllHadisSarif> {
               ),
               itemBuilder: (BuildContext context, int index) {
                 return GestureDetector(
-                  onTap: () {
-                    setState(() {
-                      // ontap of each card, set the defined int to the grid view index
-                      selectedCard = index;
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (_) => OneBook(
-                            onebook: islamicBooks[index],
-                          ),
-                        ),
-                      );
-                    });
+                  onTap: () async {
+                    final path = islamicBooks[index].pdfUrl;
+                    // final path = 'assets/books/sample.pdf';
+                    final file = await PDFApi.loadAsset(path);
+                    openPDF(context, file);
                   },
+                  // onTap: () {
+                  //   setState(() {
+                  //     // ontap of each card, set the defined int to the grid view index
+                  //     selectedCard = index;
+                  //     Navigator.push(
+                  //       context,
+                  //       MaterialPageRoute(
+                  //         builder: (_) => OneBook(
+                  //           onebook: islamicBooks[index],
+                  //         ),
+                  //       ),
+                  //     );
+                  //   });
+                  // },
                   child: Card(
                     // check if the index is equal to the selected Card integer
                     color: selectedCard == index
@@ -123,4 +132,11 @@ class _ACS_AllHadisSarifState extends State<ACS_AllHadisSarif> {
       ),
     );
   }
+
+  void openPDF(BuildContext context, File file) => Navigator.of(context).push(
+        MaterialPageRoute(
+            builder: (context) => OneBook(
+                  file: file,
+                )),
+      );
 }

@@ -4,19 +4,18 @@ import 'package:acs/acs_Widgets/acs_constants.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 
-class ACS_OnePhotoForOneAlbum extends StatefulWidget {
+class ACS_PhotoForOneAlbum extends StatefulWidget {
   final PhotoOneAlbums photos;
 
-  ACS_OnePhotoForOneAlbum({
+  ACS_PhotoForOneAlbum({
     required this.photos,
   });
 
   @override
-  _ACS_OnePhotoForOneAlbumState createState() =>
-      _ACS_OnePhotoForOneAlbumState();
+  _ACS_PhotoForOneAlbumState createState() => _ACS_PhotoForOneAlbumState();
 }
 
-class _ACS_OnePhotoForOneAlbumState extends State<ACS_OnePhotoForOneAlbum> {
+class _ACS_PhotoForOneAlbumState extends State<ACS_PhotoForOneAlbum> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

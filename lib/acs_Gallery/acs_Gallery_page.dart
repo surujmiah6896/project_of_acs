@@ -1,5 +1,6 @@
 import 'package:acs/acs_Gallery/acs_AllPhotosAlbum_page.dart';
 import 'package:acs/acs_Gallery/acs_AllVideosAlbum_page.dart';
+import 'package:acs/acs_Gallery/acs_AllVideosAlbum_page.dart';
 import 'package:acs/acs_Widgets/acs_ReusableCard_page.dart';
 import 'package:acs/acs_Widgets/acs_constants.dart';
 import 'package:flutter/material.dart';
@@ -72,7 +73,7 @@ class _ACS_GalleryState extends State<ACS_Gallery> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => ACS_AllVideosAlbum(),
+                            builder: (context) => MyHomePage(),
                           ),
                         );
                       });

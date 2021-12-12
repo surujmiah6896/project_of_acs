@@ -76,6 +76,7 @@ class _ACS_AllCommitteesState extends State<ACS_AllCommittees> {
                               width: MediaQuery.of(context).size.width / 2,
                               child: Center(
                                 child: CircleAvatar(
+                                  backgroundColor: Colors.white,
                                   radius: 100.0,
                                   child: ClipRRect(
                                     child:

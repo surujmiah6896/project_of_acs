@@ -81,6 +81,7 @@ class _ACS_AllCollectorsState extends State<ACS_AllCollectors> {
                               width: MediaQuery.of(context).size.width / 2,
                               child: Center(
                                 child: CircleAvatar(
+                                  backgroundColor: Colors.white,
                                   radius: 100.0,
                                   child: ClipRRect(
                                     child:

@@ -2,8 +2,11 @@ import 'package:acs/acs_Data/acs_IslamicEbooks_info.dart';
 import 'package:acs/acs_Data/acs_Programs_info.dart';
 import 'package:acs/acs_Ebook/acs_OneBook_page.dart';
 import 'package:acs/acs_Widgets/acs_constants.dart';
+import 'package:acs/api/acs_pdf_api.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'dart:io';
+import 'package:flutter/services.dart';
 
 class ACS_AllIslamicBook extends StatefulWidget {
   @override
@@ -46,19 +49,10 @@ class _ACS_AllIslamicBookState extends State<ACS_AllIslamicBook> {
               ),
               itemBuilder: (BuildContext context, int index) {
                 return GestureDetector(
-                  onTap: () {
-                    setState(() {
-                      // ontap of each card, set the defined int to the grid view index
-                      selectedCard = index;
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (_) => OneBook(
-                            onebook: islamicBooks[index],
-                          ),
-                        ),
-                      );
-                    });
+                  onTap: () async {
+                    final path = islamicBooks[index].pdfUrl;
+                    final file = await PDFApi.loadAsset(path);
+                    openPDF(context, file);
                   },
                   child: Card(
                     // check if the index is equal to the selected Card integer
@@ -79,7 +73,8 @@ class _ACS_AllIslamicBookState extends State<ACS_AllIslamicBook> {
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(3),
                                 image: DecorationImage(
-                                  image: AssetImage(programs[index].imageUrl),
+                                  image:
+                                      AssetImage(islamicBooks[index].pdfcover),
                                   fit: BoxFit.fill,
                                 ),
                               ),
@@ -124,4 +119,11 @@ class _ACS_AllIslamicBookState extends State<ACS_AllIslamicBook> {
       ),
     );
   }
+
+  void openPDF(BuildContext context, File file) => Navigator.of(context).push(
+        MaterialPageRoute(
+            builder: (context) => OneBook(
+                  file: file,
+                )),
+      );
 }
